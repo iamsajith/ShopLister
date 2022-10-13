@@ -1,0 +1,95 @@
+<div class="container-fluid">
+ <nav class="navbar navbar-expand-lg navbar-light pt-3">
+   <div class="container">
+     <a class="navbar-brand" routerLink=""><img src="assets/LOGO.png" class="w-25" alt=""></a>
+     <div class="d-flex flex-column py-2">
+       <button
+       class="navbar-toggler w-100"
+       type="button"
+       data-toggle="collapse"
+       data-target="#navbarTogglerDemo02"
+     >
+       <span class="navbar-toggler-icon"></span>
+     </button>
+    
+     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+       <ul class="navbar-nav ml-auto">
+         <li class="nav-item">
+           <a class="nav-link" (click)="view()">Add Shop</a>
+         </li>
+         <li class="nav-item">
+           <a
+             class="nav-link"
+             (click)="signOut()"
+             >SignOut</a
+           >
+         </li>
+       </ul>
+     </div>
+ 
+     </div>
+   </div>
+ </nav>
+ </div>
+<div class="py-1 px-5">
+<nav class = "navbar">
+ <input
+   class="form-control"
+   type="text"
+   name="name"
+   [(ngModel)]="userFilter.shop_name"
+   (ngModelChange)="search()"
+   placeholder="Search">
+</nav>
+<div class="card radius-10">
+   <div class="card-body">
+       <div class="table-responsive lead-table">
+             <table class="table">
+               <thead>
+                 <tr>
+                   <th class="col">Shop ID</th>
+                   <th class="col">Shop Name</th>
+                   <th class="col">City</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr (click)="shopDetails(data._id)" *ngFor="let data of dataSource| filterBy: userFilter | paginate: {itemsPerPage: 10, currentPage: p};">
+                   <td>{{data.shop_id}}</td>
+                   <td>{{data.shop_name}}</td>
+                   <td>{{data.city}}</td>
+                 </tr>
+               </tbody>
+             </table>
+       </div>
+       <div class="paginate">
+         <pagination-controls (pageChange) = "p = $event"></pagination-controls>
+       </div>
+   </div>
+</div>
+</div>
+
+<div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{ display: displayStyle }"
+>
+<div class="modal-dialog" role="document">
+  <div class="modal-content wrapper">
+    <div class="modal-header">
+      <div class="text-center mt-2 mb-3 name">ADD SHOP</div>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+  
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="button" (click)="closeview()">
+        <i class="fas fa-window-close"></i>
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+
