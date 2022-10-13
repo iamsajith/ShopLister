@@ -1,0 +1,2 @@
+# ShopLister
+Angular + Django + PostgreSQL
