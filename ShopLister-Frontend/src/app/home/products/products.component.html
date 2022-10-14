@@ -81,6 +81,139 @@ role="dialog"
     </div>
     <div class="modal-body">
       <div class="container">
+        <form #addshop="ngForm" (ngSubmit)="addShop()">
+          <div class="col-sm mx-1">
+            <div class="form-field d-flex align-items-center">
+              <span><i class="fa-solid fa-shop"></i></span>
+              <input
+                type="text"
+                name="shopname"
+                id="shopname"
+                minlength="4"
+                maxlength="256"
+                placeholder="Shop Name"
+                [(ngModel)]="shop.shopname"
+                #shopname="ngModel"
+                required
+              />
+              <small [class.d-none]="shopname.valid" class="px-3 text-danger"><i class="fa-solid fa-xmark"></i></small>
+              <small [class.d-none]="shopname.invalid" class="px-3 text-success"
+                ><i class="fa-solid fa-check"></i></small
+              >
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <i class="fa-solid fa-shop"></i>
+              <select
+                type="text"
+                name="category"
+                id="category"
+                [(ngModel)]="shop.category"
+                #category="ngModel"
+                [class.is-invalid]="
+                  category.invalid && category.touched
+                "
+                required
+              >
+              <option value="" disabled selected>Select Category</option>
+                <option
+                  *ngFor="let category of categories"
+                  [value]="category"
+                >
+                  {{ category }}
+                </option>
+              </select>
+
+              <small
+                [class.d-none]="category.valid"
+                class="px-3 text-danger"
+                ><i class="fa-solid fa-xmark"></i></small
+              >
+              <small
+                [class.d-none]="category.invalid"
+                class="px-3 text-success"
+                ><i class="fa-solid fa-check"></i></small
+              >
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <span><i class="fa-solid fa-location-dot"></i></span>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                minlength="4"
+                maxlength="256"
+                placeholder="Address"
+                [(ngModel)]="shop.address"
+                #address="ngModel"
+                required
+              />
+              <small [class.d-none]="address.valid" class="px-3 text-danger"><i class="fa-solid fa-xmark"></i></small>
+              <small [class.d-none]="address.invalid" class="px-3 text-success"
+                ><i class="fa-solid fa-check"></i></small
+              >
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <span><i class="fa-solid fa-city"></i></span>
+              <input
+                type="text"
+                name="city"
+                id="city"
+                minlength="4"
+                maxlength="64"
+                placeholder="City"
+                [(ngModel)]="shop.city"
+                #city="ngModel"
+                required
+              />
+              <small [class.d-none]="city.valid" class="px-3 text-danger"><i class="fa-solid fa-xmark"></i></small>
+              <small [class.d-none]="city.invalid" class="px-3 text-success"
+                ><i class="fa-solid fa-check"></i></small
+              >
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <span><i class="fa-solid fa-phone"></i></span>
+              <input
+                type="text"
+                name="phone"
+                id="phone"
+                minlength="10"
+                maxlength="10"
+                placeholder="Phone"
+                [(ngModel)]="shop.phone"
+                #phone="ngModel"
+                required
+              />
+              <small [class.d-none]="phone.valid" class="px-3 text-danger"><i class="fa-solid fa-xmark"></i></small>
+              <small [class.d-none]="phone.invalid" class="px-3 text-success"
+                ><i class="fa-solid fa-check"></i></small
+              >
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <i class="fa-solid fa-image"></i>
+              <input
+                class="form-control form-control-sm"
+                type="file"
+                name="file"
+                id="file"
+                accept="image/*"
+                [(ngModel)]="photo"
+                #image="ngModel"
+                (change)="selectFile($event)"
+                placeholder="Photo"
+                required
+                ngModel
+              />
+              <small [class.d-none]="image.valid" class="px-3 text-danger"><i class="fa-solid fa-xmark"></i></small>
+              <small [class.d-none]="image.invalid" class="px-3 text-success"><i class="fa-solid fa-check"></i></small>
+            </div>
+            <button
+              class="btn mt-3"
+              [disabled]="addshop.form.invalid"
+            >
+              SUBMIT
+            </button>
+          </div>
+          </form>
   
       </div>
     </div>

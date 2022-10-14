@@ -124,3 +124,6 @@ option {
 .paginate{
  text-align: end;
 }
+i{
+    padding: 2px;
+}

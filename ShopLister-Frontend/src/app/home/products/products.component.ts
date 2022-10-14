@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ShopModel } from 'src/app/shared/models/shop.model';
 
 @Component({
   selector: 'app-products',
@@ -7,13 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  name:string=""
+  name!:string
   userFilter: any = { shop_name: '' };
   user_data: any;
-  resultsLength = 0;
+  url:any
   dataSource:any
   p : number = 1;
+  photo:any
   displayStyle = "none";
+  shop = new ShopModel('','','','','','')
+  categories= ['Grocery/Supermarket','Convenience Store','Big Box/Superstore','Specialty Store','Department Store','Discount Store','Off-Price Retailer','Warehouse']
 
   constructor(private router:Router) { }
 
@@ -40,7 +44,26 @@ export class ProductsComponent implements OnInit {
     this.router.navigate([route,id]);
   }
 
-  addShop(){}
+  addShop(){
+    this.shop.image = this.url
+    console.log(this.shop)
+  }
+  selectFile(event: any) {
+    if (!event.target.files[0] || event.target.files[0].length === 0) {
+      return
+    }
+    let mimeType = event.target.files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      return
+    }
+    let reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (_event) => {
+      this.url = reader.result
+      console.log(this.url)
+      // this.imgshow = false
+    }
+  }
   signOut(){
     this.router.navigate(['/auth/login'])
   }
