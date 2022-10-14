@@ -1,0 +1,18 @@
+td{
+ /* padding-left: 2%; */
+ padding-bottom: 2%;
+ text-align: left;
+}
+.buttons{
+ margin-left: auto;
+ margin-right: auto;
+}
+.space{
+ padding-left: 4%;
+}
+a{
+ cursor: pointer;
+}
+.nav-item{
+ font-size:larger
+ }
