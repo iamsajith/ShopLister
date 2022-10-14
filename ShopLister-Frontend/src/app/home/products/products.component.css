@@ -127,3 +127,10 @@ option {
 i{
     padding: 2px;
 }
+.tableimg{
+    height: 50;
+    width: auto;
+}
+tr{
+    padding: 5px;
+}

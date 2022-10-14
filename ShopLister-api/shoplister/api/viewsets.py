@@ -8,4 +8,4 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class ShopViewSet(viewsets.ModelViewSet):
     queryset = models.Shops.objects.all()
-    serializer_class = serializers.UserSerializer
+    serializer_class = serializers.ShopSerializer

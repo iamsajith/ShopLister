@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShopModel } from 'src/app/shared/models/shop.model';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -9,7 +10,7 @@ import { ShopModel } from 'src/app/shared/models/shop.model';
 })
 export class ProductsComponent implements OnInit {
   name!:string
-  userFilter: any = { shop_name: '' };
+  userFilter: any = { shopname: '' };
   user_data: any;
   url:any
   dataSource:any
@@ -19,19 +20,14 @@ export class ProductsComponent implements OnInit {
   shop = new ShopModel('','','','','','')
   categories= ['Grocery/Supermarket','Convenience Store','Big Box/Superstore','Specialty Store','Department Store','Discount Store','Off-Price Retailer','Warehouse']
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private shopService:ProductService) { }
 
   ngOnInit(): void {
+    this.getShops()
   }
 
   view(){
     this.displayStyle = "block";
-    // this._student.getCourses().subscribe((data)=>{
-    // this.array = JSON.parse(JSON.stringify(data))
-    // this.courses = this.array[0].course
-    // }
-    // )
-
   }
   closeview(){
     this.displayStyle = "none";
@@ -43,10 +39,17 @@ export class ProductsComponent implements OnInit {
     localStorage.setItem("SHOP-ID",id)
     this.router.navigate([route,id]);
   }
-
+  getShops(){
+    this.shopService.getShops().subscribe((res)=>{
+      this.dataSource = JSON.parse(JSON.stringify(res))
+      console.log(this.dataSource[0].city)
+    })
+  }
   addShop(){
     this.shop.image = this.url
-    console.log(this.shop)
+    this.shopService.Register(this.shop).subscribe(()=>{
+      console.log("Shop is added")
+    })
   }
   selectFile(event: any) {
     if (!event.target.files[0] || event.target.files[0].length === 0) {
