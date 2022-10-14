@@ -37,7 +37,7 @@
    class="form-control"
    type="text"
    name="name"
-   [(ngModel)]="userFilter.shop_name"
+   [(ngModel)]="userFilter.shopname"
    (ngModelChange)="search()"
    placeholder="Search">
 </nav>
@@ -53,9 +53,9 @@
                  </tr>
                </thead>
                <tbody>
-                 <tr (click)="shopDetails(data._id)" *ngFor="let data of dataSource| filterBy: userFilter | paginate: {itemsPerPage: 10, currentPage: p};">
-                   <td>{{data.shop_id}}</td>
-                   <td>{{data.shop_name}}</td>
+                 <tr (click)="shopDetails(data.url)" *ngFor="let data of dataSource| filterBy: userFilter | paginate: {itemsPerPage: 10, currentPage: p};">
+                   <td>{{data.shopname}}</td>
+                   <td>{{data.shopname}}</td>
                    <td>{{data.city}}</td>
                  </tr>
                </tbody>

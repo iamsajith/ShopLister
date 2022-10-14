@@ -15,4 +15,7 @@ export class ProductService {
     headers.append('Accept', 'application/json');
     return this._http.post<any>('http://localhost:8000/api/shops/',data,{headers:headers})
   }
+  getShops():Observable<any>{
+    return this._http.get<any>('http://localhost:8000/api/shops/')
+  }
 }

@@ -9,7 +9,7 @@ class Users(models.Model):
     password = models.CharField(max_length = 240)
 
 class Shops(models.Model):
-    shopname = models.EmailField()
+    shopname = models.CharField(max_length = 50)
     category = models.CharField(max_length = 50)
     address = models.CharField(max_length = 240)
     city = models.CharField(max_length = 50)

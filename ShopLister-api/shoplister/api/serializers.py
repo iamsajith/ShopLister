@@ -11,3 +11,4 @@ class ShopSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Shops
         fields = "__all__"
+    

@@ -10,7 +10,6 @@ import { ProductsInfoComponent } from './home/products-info/products-info.compon
 import { HttpClientModule } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FilterPipeModule } from 'ngx-filter-pipe';
-import { HeaderComponent } from './home/header/header.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { HeaderComponent } from './home/header/header.component';
     AuthLayoutComponent,
     ProductsComponent,
     ProductsInfoComponent,
-    HeaderComponent
   ],
   imports: [
     BrowserModule,
