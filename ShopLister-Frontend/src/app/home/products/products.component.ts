@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShopModel } from 'src/app/shared/models/shop.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
@@ -29,7 +30,7 @@ export class ProductsComponent implements OnInit {
     'Warehouse',
   ];
 
-  constructor(private router: Router, private shopService: ProductService) {}
+  constructor(private router: Router, private shopService: ProductService,private _auth:AuthService) {}
 
   ngOnInit(): void {
     this.getShops();
@@ -78,6 +79,7 @@ export class ProductsComponent implements OnInit {
     };
   }
   signOut() {
+    localStorage.removeItem('token')
     this.router.navigate(['/auth/login']);
   }
 

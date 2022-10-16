@@ -58,9 +58,9 @@
           <tbody>
             <tr
               *ngFor="
-                let data of dataSource
+                let data of dataSource.reverse()
                   | filterBy: userFilter
-                  | paginate: { itemsPerPage: 2, currentPage: p }
+                  | paginate: { itemsPerPage: 10, currentPage: p }
               "
             >
               <td>{{ data.id }}</td>

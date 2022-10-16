@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductsInfoComponent } from './home/products-info/products-info.component';
 import { ProductsComponent } from './home/products/products.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { AuthGuard } from './shared/auth.guard';
 import { AUTH_ROUTES } from './shared/routes/auth.routes';
 
 const routes: Routes = [
@@ -12,13 +13,13 @@ const routes: Routes = [
     children:AUTH_ROUTES
   },
   {path:"",
+  canActivate:[AuthGuard],
   component:ProductsComponent
-
 },
-{path:"view/:id",
-  component:ProductsInfoComponent
-
-}
+    {path:"view/:id",
+    canActivate:[AuthGuard],
+    component:ProductsInfoComponent
+  }
 ];
 
 @NgModule({

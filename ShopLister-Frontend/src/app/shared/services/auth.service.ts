@@ -16,13 +16,22 @@ export class AuthService {
     headers.append('Accept', 'application/json');
     return this._http.post<any>('http://localhost:8000/api/users/',data,{headers:headers})
   }
-  Verify(data:any){
-    return this._http.post<any>('http://localhost:8080/login',data)
+  Verify(data:any):Observable<any>{
+    console.log("LoginData",data)
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    return this._http.post<any>('http://localhost:8000/login/',data,{headers:headers})
   }
   
-  isLoggedIn(){
-    const isData:any = localStorage.getItem('userData')
-    return !! JSON.parse(isData).token
+ 
+  loggedIn(){
+    return !!localStorage.getItem('token')
+    
+  }
+  getToken(){
+    
+    return localStorage.getItem('token')
   }
 
 }

@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class SignupComponent implements OnInit {
   photo:any
   show= true
-  userCred = new AuthModel('','','','','')
+  userCred = new AuthModel('','','')
 
   constructor(private _auth: AuthService, private _router:Router) { }
 
@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
     console.log("Signup Data",this.userCred)
     this._auth.Register(this.userCred).subscribe((res)=>{
       console.log("credentials",this.userCred)
-      this._router.navigate(['../login'])
+      this._router.navigate(['/auth/login'])
       console.log(res)
     })
 
