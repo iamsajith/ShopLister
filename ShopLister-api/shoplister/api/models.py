@@ -4,8 +4,8 @@ from django.db import models
 class Users(models.Model):
     email = models.EmailField()
     username = models.CharField(max_length = 240)
-    fullname = models.CharField(max_length = 240)
-    phone = models.CharField(max_length=12)
+    # fullname = models.CharField(max_length = 240)
+    # phone = models.CharField(max_length=12)
     password = models.CharField(max_length = 240)
 
 class Shops(models.Model):

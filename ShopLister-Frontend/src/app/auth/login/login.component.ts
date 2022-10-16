@@ -9,17 +9,21 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  User = new AuthModel('', '', '','', '');
+  User = new AuthModel('', '', '');
 
   constructor(private _auth: AuthService, private _router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this._auth.loggedIn()) {
+      this._router.navigate(['/']);
+    }
+  }
 
   Verify(){
-    this._auth.Verify(this.User).subscribe(async(res) => {
-      const data = JSON.stringify(res.data)
-      await localStorage.setItem("userData",data)
-      this._router.navigate(['../']);
+    this._auth.Verify(this.User).subscribe((res) => {
+      console.log(res)
+      localStorage.setItem('token',JSON.parse(JSON.stringify(res)).token)
+      this._router.navigate(['/']);
     });
   }
 }

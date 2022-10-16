@@ -7,9 +7,12 @@ import { AppComponent } from './app.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { ProductsComponent } from './home/products/products.component';
 import { ProductsInfoComponent } from './home/products-info/products-info.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { AuthService } from './shared/services/auth.service';
+import { ProductService } from './shared/services/product.service';
+import { TokeninterceptorService } from './shared/services/tokeninterceptor.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,15 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     NgxPaginationModule,
     FilterPipeModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    ProductService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokeninterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

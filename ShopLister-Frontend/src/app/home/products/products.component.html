@@ -1,228 +1,249 @@
 <div class="container-fluid">
- <nav class="navbar navbar-expand-lg navbar-light pt-3">
-   <div class="container">
-     <a class="navbar-brand" routerLink=""><img src="assets/LOGO.png" class="w-25" alt=""></a>
-     <div class="d-flex flex-column py-2">
-       <button
-       class="navbar-toggler w-100"
-       type="button"
-       data-toggle="collapse"
-       data-target="#navbarTogglerDemo02"
-     >
-       <span class="navbar-toggler-icon"></span>
-     </button>
-    
-     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-       <ul class="navbar-nav ml-auto">
-         <li class="nav-item">
-           <a class="nav-link" (click)="view()">Add Shop</a>
-         </li>
-         <li class="nav-item">
-           <a
-             class="nav-link"
-             (click)="signOut()"
-             >SignOut</a
-           >
-         </li>
-       </ul>
-     </div>
- 
-     </div>
-   </div>
- </nav>
- </div>
-<div class="py-1 px-5">
-<nav class = "navbar">
- <input
-   class="form-control"
-   type="text"
-   name="name"
-   [(ngModel)]="userFilter.shopname"
-   (ngModelChange)="search()"
-   placeholder="Search">
-</nav>
-<div class="card radius-10">
-   <div class="card-body">
-       <div class="table-responsive lead-table">
-             <table class="table">
-               <thead>
-                 <tr>
-                   <th class="col">Shop ID</th>
-                   <th class="col">Shop Name</th>
-                   <th class="col">City</th>
-                 </tr>
-               </thead>
-               <tbody>
-                 <tr (click)="shopDetails(data.url)" *ngFor="let data of dataSource| filterBy: userFilter | paginate: {itemsPerPage: 10, currentPage: p};">
-                   <td>{{data.shopname}}</td>
-                   <td>{{data.shopname}}</td>
-                   <td>{{data.city}}</td>
-                 </tr>
-               </tbody>
-             </table>
-       </div>
-       <div class="paginate">
-         <pagination-controls (pageChange) = "p = $event"></pagination-controls>
-       </div>
-   </div>
-</div>
-</div>
+  <nav class="navbar navbar-expand-lg navbar-light pt-3">
+    <div class="container">
+      <a class="navbar-brand" routerLink=""
+        ><img src="assets/shop.png" style="height: 40px ;" alt=""
+      /></a>
+      <div class="d-flex flex-column py-2">
+        <button
+          class="navbar-toggler w-100"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo02"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-<div
-class="modal"
-tabindex="-1"
-role="dialog"
-[ngStyle]="{ display: displayStyle }"
->
-<div class="modal-dialog" role="document">
-  <div class="modal-content wrapper">
-    <div class="modal-header">
-      <div class="text-center mt-2 mb-3 name">ADD SHOP</div>
-    </div>
-    <div class="modal-body">
-      <div class="container">
-        <form #addshop="ngForm" (ngSubmit)="addShop()">
-          <div class="col-sm mx-1">
-            <div class="form-field d-flex align-items-center">
-              <span><i class="fa-solid fa-shop"></i></span>
-              <input
-                type="text"
-                name="shopname"
-                id="shopname"
-                minlength="4"
-                maxlength="256"
-                placeholder="Shop Name"
-                [(ngModel)]="shop.shopname"
-                #shopname="ngModel"
-                required
-              />
-              <small [class.d-none]="shopname.valid" class="px-3 text-danger"><i class="fa-solid fa-xmark"></i></small>
-              <small [class.d-none]="shopname.invalid" class="px-3 text-success"
-                ><i class="fa-solid fa-check"></i></small
-              >
-            </div>
-            <div class="form-field d-flex align-items-center">
-              <i class="fa-solid fa-shop"></i>
-              <select
-                type="text"
-                name="category"
-                id="category"
-                [(ngModel)]="shop.category"
-                #category="ngModel"
-                [class.is-invalid]="
-                  category.invalid && category.touched
-                "
-                required
-              >
-              <option value="" disabled selected>Select Category</option>
-                <option
-                  *ngFor="let category of categories"
-                  [value]="category"
-                >
-                  {{ category }}
-                </option>
-              </select>
-
-              <small
-                [class.d-none]="category.valid"
-                class="px-3 text-danger"
-                ><i class="fa-solid fa-xmark"></i></small
-              >
-              <small
-                [class.d-none]="category.invalid"
-                class="px-3 text-success"
-                ><i class="fa-solid fa-check"></i></small
-              >
-            </div>
-            <div class="form-field d-flex align-items-center">
-              <span><i class="fa-solid fa-location-dot"></i></span>
-              <input
-                type="text"
-                name="address"
-                id="address"
-                minlength="4"
-                maxlength="256"
-                placeholder="Address"
-                [(ngModel)]="shop.address"
-                #address="ngModel"
-                required
-              />
-              <small [class.d-none]="address.valid" class="px-3 text-danger"><i class="fa-solid fa-xmark"></i></small>
-              <small [class.d-none]="address.invalid" class="px-3 text-success"
-                ><i class="fa-solid fa-check"></i></small
-              >
-            </div>
-            <div class="form-field d-flex align-items-center">
-              <span><i class="fa-solid fa-city"></i></span>
-              <input
-                type="text"
-                name="city"
-                id="city"
-                minlength="4"
-                maxlength="64"
-                placeholder="City"
-                [(ngModel)]="shop.city"
-                #city="ngModel"
-                required
-              />
-              <small [class.d-none]="city.valid" class="px-3 text-danger"><i class="fa-solid fa-xmark"></i></small>
-              <small [class.d-none]="city.invalid" class="px-3 text-success"
-                ><i class="fa-solid fa-check"></i></small
-              >
-            </div>
-            <div class="form-field d-flex align-items-center">
-              <span><i class="fa-solid fa-phone"></i></span>
-              <input
-                type="text"
-                name="phone"
-                id="phone"
-                minlength="10"
-                maxlength="10"
-                placeholder="Phone"
-                [(ngModel)]="shop.phone"
-                #phone="ngModel"
-                required
-              />
-              <small [class.d-none]="phone.valid" class="px-3 text-danger"><i class="fa-solid fa-xmark"></i></small>
-              <small [class.d-none]="phone.invalid" class="px-3 text-success"
-                ><i class="fa-solid fa-check"></i></small
-              >
-            </div>
-            <div class="form-field d-flex align-items-center">
-              <i class="fa-solid fa-image"></i>
-              <input
-                class="form-control form-control-sm"
-                type="file"
-                name="file"
-                id="file"
-                accept="image/*"
-                [(ngModel)]="photo"
-                #image="ngModel"
-                (change)="selectFile($event)"
-                placeholder="Photo"
-                required
-                ngModel
-              />
-              <small [class.d-none]="image.valid" class="px-3 text-danger"><i class="fa-solid fa-xmark"></i></small>
-              <small [class.d-none]="image.invalid" class="px-3 text-success"><i class="fa-solid fa-check"></i></small>
-            </div>
-            <button
-              class="btn mt-3"
-              [disabled]="addshop.form.invalid"
-            >
-              SUBMIT
-            </button>
-          </div>
-          </form>
-  
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item px-2">
+              <a class="nav-link" title="Add Shop" (click)="view()"
+                ><i class="fa-solid fa-plus"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" title="SignOut" (click)="signOut()"
+                ><i class="fa-solid fa-right-from-bracket"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="button" (click)="closeview()">
-        <i class="fas fa-window-close"></i>
-      </button>
+  </nav>
+</div>
+<div class="py-1 px-5">
+  <nav class="navbar">
+    <input
+      class="form-control"
+      type="text"
+      name="name"
+      [(ngModel)]="userFilter.shopname"
+      (ngModelChange)="search()"
+      placeholder="Search"
+    />
+  </nav>
+  <div class="card radius-10">
+    <div class="card-body">
+      <div class="table-responsive lead-table">
+        <table class="table">
+          <thead class="thead-light">
+            <tr class="align-middle">
+              <th>SHOP ID</th>
+              <th>SHOP NAME</th>
+              <th>CITY</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let data of dataSource.reverse()
+                  | filterBy: userFilter
+                  | paginate: { itemsPerPage: 10, currentPage: p }
+              "
+            >
+              <td>{{ data.id }}</td>
+              <td>{{ data.shopname }}</td>
+              <td>{{ data.city }}</td>
+              <td>
+                <button class="btn" title="view" (click)="shopDetails(data.id)">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="paginate">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
     </div>
   </div>
 </div>
-</div>
 
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayStyle }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content wrapper">
+      <div class="modal-header">
+        <div class="text-center mt-2 mb-3 name">ADD SHOP</div>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form #addshop="ngForm" (ngSubmit)="addShop()">
+            <div class="col-sm mx-1">
+              <div class="form-field d-flex align-items-center">
+                <span><i class="fa-solid fa-shop"></i></span>
+                <input
+                  type="text"
+                  name="shopname"
+                  id="shopname"
+                  minlength="4"
+                  maxlength="256"
+                  placeholder="Shop Name"
+                  [(ngModel)]="shop.shopname"
+                  #shopname="ngModel"
+                  required
+                />
+                <small [class.d-none]="shopname.valid" class="px-3 text-danger"
+                  ><i class="fa-solid fa-xmark"></i
+                ></small>
+                <small
+                  [class.d-none]="shopname.invalid"
+                  class="px-3 text-success"
+                  ><i class="fa-solid fa-check"></i
+                ></small>
+              </div>
+              <div class="form-field d-flex align-items-center">
+                <i class="fa-solid fa-shop"></i>
+                <select
+                  type="text"
+                  name="category"
+                  id="category"
+                  [(ngModel)]="shop.category"
+                  #category="ngModel"
+                  [class.is-invalid]="category.invalid && category.touched"
+                  required
+                >
+                  <option value="" disabled selected>Select Category</option>
+                  <option
+                    *ngFor="let category of categories"
+                    [value]="category"
+                  >
+                    {{ category }}
+                  </option>
+                </select>
+
+                <small [class.d-none]="category.valid" class="px-3 text-danger"
+                  ><i class="fa-solid fa-xmark"></i
+                ></small>
+                <small
+                  [class.d-none]="category.invalid"
+                  class="px-3 text-success"
+                  ><i class="fa-solid fa-check"></i
+                ></small>
+              </div>
+              <div class="form-field d-flex align-items-center">
+                <span><i class="fa-solid fa-location-dot"></i></span>
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  minlength="4"
+                  maxlength="256"
+                  placeholder="Address"
+                  [(ngModel)]="shop.address"
+                  #address="ngModel"
+                  required
+                />
+                <small [class.d-none]="address.valid" class="px-3 text-danger"
+                  ><i class="fa-solid fa-xmark"></i
+                ></small>
+                <small
+                  [class.d-none]="address.invalid"
+                  class="px-3 text-success"
+                  ><i class="fa-solid fa-check"></i
+                ></small>
+              </div>
+              <div class="form-field d-flex align-items-center">
+                <span><i class="fa-solid fa-city"></i></span>
+                <input
+                  type="text"
+                  name="city"
+                  id="city"
+                  minlength="4"
+                  maxlength="64"
+                  placeholder="City"
+                  [(ngModel)]="shop.city"
+                  #city="ngModel"
+                  required
+                />
+                <small [class.d-none]="city.valid" class="px-3 text-danger"
+                  ><i class="fa-solid fa-xmark"></i
+                ></small>
+                <small [class.d-none]="city.invalid" class="px-3 text-success"
+                  ><i class="fa-solid fa-check"></i
+                ></small>
+              </div>
+              <div class="form-field d-flex align-items-center">
+                <span><i class="fa-solid fa-phone"></i></span>
+                <input
+                  type="text"
+                  name="phone"
+                  id="phone"
+                  minlength="10"
+                  maxlength="10"
+                  placeholder="Phone"
+                  [(ngModel)]="shop.phone"
+                  #phone="ngModel"
+                  required
+                />
+                <small [class.d-none]="phone.valid" class="px-3 text-danger"
+                  ><i class="fa-solid fa-xmark"></i
+                ></small>
+                <small [class.d-none]="phone.invalid" class="px-3 text-success"
+                  ><i class="fa-solid fa-check"></i
+                ></small>
+              </div>
+              <div class="form-field d-flex align-items-center">
+                <i class="fa-solid fa-image"></i>
+                <input
+                  class="form-control form-control-sm"
+                  type="file"
+                  name="file"
+                  id="file"
+                  accept="image/*"
+                  [(ngModel)]="photo"
+                  #image="ngModel"
+                  (change)="selectFile($event)"
+                  placeholder="Photo"
+                  required
+                  ngModel
+                />
+                <small [class.d-none]="image.valid" class="px-3 text-danger"
+                  ><i class="fa-solid fa-xmark"></i
+                ></small>
+                <small [class.d-none]="image.invalid" class="px-3 text-success"
+                  ><i class="fa-solid fa-check"></i
+                ></small>
+              </div>
+              <button class="btn mt-3" [disabled]="addshop.form.invalid">
+                SUBMIT
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="button" (click)="closeview()">
+          <i class="fas fa-window-close"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

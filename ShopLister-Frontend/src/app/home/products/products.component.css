@@ -4,9 +4,9 @@ table {
  overflow-y: hidden;
  min-width: 500px;
 }
-.col{
+/* .col{
  width: 33.33%;
-}
+} */
 .paginate{
 text-align: end;
 }
@@ -131,6 +131,16 @@ i{
     height: 50;
     width: auto;
 }
-tr{
-    padding: 5px;
+.data{
+    cursor: pointer;
 }
+.data:hover{
+    background-color: #b1b1b1;
+}
+td{
+    text-transform: capitalize;
+}
+.nav-item{
+font-size:larger
+}
+
